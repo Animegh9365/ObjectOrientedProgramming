@@ -1,0 +1,142 @@
+Constructors:
+
+We have created hundreds of object in java by now. Although we have got the job done, 
+but there was always a much more efficient way for doing the same.
+
+When working with Java objects, initializing instance variables can often become repetitive 
+and cumbersome, especially when you're dealing with multiple objects each requiring several
+steps to set up.
+
+Example:
+
+class Student {
+    String name;
+    int age;
+    String grade;
+    String school;
+}
+
+public class School {
+    public static void main(String[] args) {
+        Student student1 = new Student();
+        student1.name = "Alice";
+        student1.age = 14;
+        student1.grade = "8th";
+        student1.school = "Greenwood High";
+
+        Student student2 = new Student();
+        student2.name = "Bob";
+        student2.age = 13;
+        student2.grade = "7th";
+        student2.school = "Greenwood High";
+
+        // Repeat for more students
+    }
+}
+
+
+In the example above, setting the properties of each student involves four lines of code.
+For n students, you would need 4n statements. This approach is not only time-consuming but 
+also error-prone and difficult to maintain
+
+
+What is a constructor?
+-> A constructor is a special method in java that has the same name as the class and it is used
+to initialize the variables of the class and it does not have a return type. It is used upon 
+immediate creation of the object.
+
+
+Implementing Parameterized Constructors:
+
+To address the repetitive code issue in our Student class, we can use a parameterized 
+constructor that takes parameters for each instance variable and sets them upon object creation:
+
+
+Example:
+
+class Student {
+    String name;
+    int age;
+    String grade;
+    String school;
+
+    // Parameterized constructor
+    public Student(String n, int a, String g, String s) {
+        name = n;
+        age = a;
+        grade = g;
+        school = s;
+    }
+}
+
+public class School {
+    public static void main(String[] args) {
+        Student student1 = new Student("Alice", 14, "8th", "Greenwood High");
+        Student student2 = new Student("Bob", 13, "7th", "Greenwood High");
+        // Instantiation is much cleaner and more concise
+    }
+}
+
+
+
+
+Problems in parameterized Constructor:
+
+Variable Shadowing Problem: 
+	In java, distinguishing between instance variables and local variables in constructors or methods
+	can be challenging when they share the same name. This common scenario is known as variable 
+	shadowing.
+	
+	Variable shadowing occurs when a local variable within a method or constructor has the same
+	name as an instance variable. In such cases, the local variable takes precedence within its 
+	scope, effectively "shadowing" the instance variable. This means any attempt to use the shared 
+	name within the scope will refer to the local variable instead of the instance variable.
+	
+	
+Solution to Shadowing problem:
+
+	'this' keyword is the solution. Using the 'this' keyword with the instance variable will 
+	differentiate between the local variable. It ensures that the instance variables are correctly
+	initialized.
+	
+	Example:
+	
+	class Car {
+	    String color;
+	    String model;
+	
+	    // Constructor using 'this' to refer to instance variables
+	    public Car(String color, String model) {
+	        this.color = color;  // 'this.color' refers to the instance variable, 'color' to the parameter
+	        this.model = model;  // Similarly, 'this.model' refers to the instance variable
+	    }
+	}
+	
+	public class Dealership {
+	    public static void main(String[] args) {
+	        Car myCar = new Car("Blue", "Honda Civic");
+	        System.out.println("Car details: " + myCar.color + " " + myCar.model);  // Expected to output "Blue Honda Civic"
+	    }
+	}
+	
+	Explanation: 
+	
+	In the constructor of Car, this.color = color; assigns the value of the parameter color to the
+	instance variable color. The use of this.color clearly identifies it as the instance variable.
+	 
+	
+	Similarly, this.model = model; ensures that the value of the parameter model is assigned to the
+	instance variable model.
+	
+	By prefixing the instance variables with this, it eliminates any confusion that arises due to 
+	the same names, effectively resolving the shadowing issue.In the constructor of Car, 
+	this.color = color; assigns the value of the parameter color to the instance variable color. 
+	The use of this.color clearly identifies it as the instance variable.
+	
+	Similarly, this.model = model; ensures that the value of the parameter model is assigned to 
+	the instance variable model.
+	
+	By prefixing the instance variables with this, it eliminates any confusion that arises due to 
+	the same names, effectively resolving the shadowing issue.
+
+
