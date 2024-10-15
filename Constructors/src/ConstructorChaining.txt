@@ -1,0 +1,112 @@
+Constructor chaining with this() method
+
+Constructor chaining means calling another constructor from a constructor that is present in the same
+class. And we can achieve it by using this() method in java.
+
+Example: 
+
+class Book {
+    String title;
+    String author;
+    int year;
+
+    // Constructor to initialize the Book with all details
+    public Book(String title, String author, int year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        System.out.println("Creating Book: " + this.title + ", " + this.author + ", " + this.year);
+    }
+
+    // Constructor to initialize the Book with title and author, defaults year
+    public Book(String title, String author) {
+        this(title, author, 2020);  // Chaining to main constructor with a default year
+    }
+
+    // Default constructor
+    public Book() {
+        this("Unknown Title", "Unknown Author");  // Chaining to constructor with two parameters
+    }
+}
+
+public class Library {
+    public static void main(String[] args) {
+        Book myBook = new Book();  // Uses default constructor
+    }
+}
+
+
+
+Breakdown of the Constructor Chaining
+In the Book class:
+
+The default constructor calls the two-parameter constructor passing default values for title and author.
+
+The two-parameter constructor then calls the three-parameter constructor, adding a default publication year.
+
+The three-parameter constructor is the most comprehensive one, where all properties of the book are set, and
+it directly initializes the object.
+
+
+Java can also call a constructor of a parent class. The chaining of the constructor to the parent class is done
+using the super() method.
+
+When a class extends another class, the constructor of the child class is responsible for calling the constructor
+of the parent class to ensure all inherited properties are properly initialized
+
+In java every class implicitly extends the Object class if no other super class is specified. This makes Object 
+the ultimate parent for all java classes. When constructing an object, Java ensures that the constructors of 
+all super classes are called all the way up to the Object class.
+
+If the programmer does not specify any constructor in the class then a default constructor is created in the 
+class which has a default method super() that will be inherited from the parent class(i.e Object class)
+
+
+Example:
+
+class Vehicle {
+    int wheels;
+
+    // Constructor of the Vehicle class
+    public Vehicle(int wheels) {
+        this.wheels = wheels;
+        System.out.println("Vehicle with " + wheels + " wheels created.");
+    }
+}
+
+class Car extends Vehicle {
+    String model;
+
+    // Constructor of the Car class
+    public Car(String model) {
+        super(4);  // Explicit call to the superclass constructor
+        this.model = model;
+        System.out.println("Car model " + model + " created.");
+    }
+}
+
+public class Dealership {
+    public static void main(String[] args) {
+        Car myCar = new Car("Tesla Model S");  // This will invoke the Car constructor
+    }
+}
+
+The Car class extends the Vehicle class.
+
+The Car constructor calls super(4), explicitly invoking the constructor of its 
+superclass, Vehicle. This ensures that the Vehicle part of a Car object is initialized
+ before the Car-specific fields.
+
+If super() was not used in Car, the compiler would insert a default super(), which would attempt to call a 
+no-argument constructor in Vehicle, leading to a compile-time error if such a constructor does not exist.
+
+
+Key Points to Understand
+Explicit Call Required: If the superclass does not have a no-argument constructor, or if a specific 
+constructor must be invoked, an explicit call using super() with appropriate arguments must be included.
+
+Initialization Order: The superclass constructor is always called before the subclass constructor, 
+ensuring proper setup of the object's state that adheres to the inheritance chain.
+
+Default super() Call: If no super() or this() call is present, a super() call to the no-argument 
+constructor of the superclass is automatically inserted by the compiler
