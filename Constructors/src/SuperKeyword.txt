@@ -1,0 +1,44 @@
+SUPER KEYWORD
+
+The super keyword in java is a reference variable that is used to refer to parent class objects. It is commonly
+used for three main purposes : To access the methods of the parent class, to access the constructor of the parent class,
+and to access the fields of the parent class if they are shadowed by any subclasses.
+
+Why use the super keyword?
+-> Method Overriding: To call the parent class's method when it has been overridden by the subclass
+-> Field access: To access the fields of the parent class that are hidden by the child class fields
+
+Example:
+
+class Vehicle {
+    String name = "Generic Vehicle";
+
+    public void start() {
+        System.out.println(name + " is starting.");
+    }
+}
+
+class Car extends Vehicle {
+    // Shadowing the name field from Vehicle
+    String name = "Car";
+
+    public void start() {
+        // Call to parent method
+        super.start();
+        System.out.println(this.name + " is starting with a key turn.");
+    }
+
+    public void displayName() {
+        // Accessing the parent class's name field using super
+        System.out.println("Parent name: " + super.name);
+        System.out.println("Car name: " + this.name);
+    }
+}
+
+public class TransportTest {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.start();  // Demonstrates method access
+        myCar.displayName();  // Demonstrates field access
+    }
+}
