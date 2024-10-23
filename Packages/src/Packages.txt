@@ -1,0 +1,41 @@
+Packages:
+
+Packages in java are a way to group related class and interfaces together. They serve multiple
+purposes, such as ensuring better organization of code, providing controlled access, and avoiding
+naming conflicts.
+
+Why Use Packages?
+
+Prevent Naming Conflicts: By creating a unique namespace, packages help avoid name conflicts between classes. 
+For example, you could have two classes named Date, each in different packages, without any 
+conflict.
+
+Controlled Access: Packages allow you to control access to classes and class members. Using access 
+modifiers like public, protected, and package-private (default), you can restrict access to package 
+members. (More on these soon)
+
+Ease of Maintenance: Packages help in organizing code files logically, making it easier to locate 
+and maintain them as the application grows.
+
+Reuse of Code: Organized code in packages can be easily reused across different parts of an 
+application or even in different projects.
+
+
+Access modifiers in Java:
+
+Access modifiers in java determine the visibility and accessibility of classes, methods and other
+members. There are four type of access modifiers in Java:-
+
+Public, Protected, default(no modifier) and private.
+
+1.Public: The public access modifier is the most permissive. It allows classes, methods and fields
+to be accessed from any other class or package in the Java environment.
+
+2.Protected: The protected access modifier allows access to the class member from within  the same
+package or subclasses in different packages.
+
+3.Default: When no access modifier is specified, Java uses default access level, which allows the 
+member to be accessible only within the same package.
+
+4.Private: The private access modifier is the most restrictive and allows the members to be accessed
+only within the same class.
