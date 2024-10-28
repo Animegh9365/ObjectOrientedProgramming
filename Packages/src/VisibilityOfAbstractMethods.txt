@@ -1,0 +1,52 @@
+Visibility of abstract Methods:
+
+When dealing with abstract classes and interfaces in Java, the visibility, or accessibility, of 
+methods plays a crucial role in designing a robust and secure application.
+
+Visibility of Abstract Classes:
+
+1. Abstract methods: Abstract methods in an abstract class can have any visibility public, protected,
+or default(package-private) however, private abstract methods are not possible because they cannot 
+be inherited and thus, cannot be implemented by any classes
+
+2. Overriding methods: When a subclass implements an abstract method, the visibility of the overridden
+method must be same or more visible than the abstract method. For example, if an abstract method is 
+protected, the overridden method should be protected or public. 
+
+Example:
+abstract class Device {
+    protected abstract void startDevice();
+}
+
+class Smartphone extends Device {
+    @Override
+    public void startDevice() {  // Increased visibility
+        System.out.println("Smartphone starting...");
+    }
+}
+
+
+Visibility in Interfaces:
+
+1. Interface methods: In Java 8 and later, interface methods can be public or default (if they 
+include a body). Before Java 8, all interface methods were implicitly public and abstract.
+
+All methods declared in an interface are implicitly public if no access modifier is specified.
+
+Private methods are allowed in interfaces from Java 9 onwards but are restricted to being used 
+internally within other methods of the interface.
+
+2. Implementing Interface methods: Classes implementing an interface must provide public implementations
+for all inherited abstract methods, ensuring uniform visibility across different implementations.
+
+Example:
+interface PaymentGateway {
+    void processPayment(double amount);  // Implicitly public
+}
+
+class Paypal implements PaymentGateway {
+    @Override
+    public void processPayment(double amount) {  // Must be public
+        System.out.println("Processing payment via Paypal: $" + amount);
+    }
+}
