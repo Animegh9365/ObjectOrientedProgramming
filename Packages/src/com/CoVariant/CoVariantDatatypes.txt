@@ -1,0 +1,51 @@
+What are CoVariant Datatypes?
+-> Datatypes that has IS-A relationship among them are called co-variant dataypes.
+When a child class inherits the properties and methods of a parent class, the methods return
+type should be either same or have a IS-A relationship.
+
+Example:
+	class Robot { //  parent class
+	}
+	class DoctorRobot extends Robot {		// child class
+	}
+	 
+
+
+	class Student {			// parent class
+		int id;
+		String name;
+		
+		Student(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+	
+		Robot studentDetails() {
+			System.out.println(id +" "+ name);
+			Robot r= new Robot();
+			return r;
+		}
+	}
+	
+	class Researcher {			// child class
+		int id;
+		String name;
+		
+		Researcher(int id, String name) {
+			this.id = id;
+			this.name = name;
+		}
+		
+		DoctorRobot studentDetails() {			// overridden method
+			System.out.println(id + " " + name );
+			DoctorRobot dr = new DoctorRobot();
+			return dr;
+		}
+	}
+	
+	
+	Note: The parent class will have the parent object return type
+		  The child class will have the child object return type
+	
+		
+ 
