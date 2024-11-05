@@ -1,0 +1,14 @@
+What is Encapsulation?
+-> Encapsulation in Java is the process of providing security to the most important data.
+And providing controlled access using getters and setters to access and modify the data.
+
+Example: If we make a program to store students data about a school. We might have "Student" object
+This object could contain student details like name, id, grades etc as well as methods to calculate
+average grades.
+
+If we don't provide security to the data like name, grades etc. Any one could access the data from
+anywhere and modify the data without consent. So to provide security to data we usually use the 
+private keyword so that it is accessible only to the class.
+
+But if the administrator wants to update the data with permission then we use special methods known
+as getters and setters.
